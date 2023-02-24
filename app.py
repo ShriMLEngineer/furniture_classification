@@ -11,7 +11,7 @@ app = FastAPI()
 repo_url="https://github.com/ShriMLEngineer/furniture_classification.git"
 repo_dir = "furniture_classification"
 
-git.Repo.clone_from(repo_url, repo_dir)
+#git.Repo.clone_from(repo_url, repo_dir)
 
 # load trained DETR model
 path = "furniture_classification/detr-main"
@@ -70,7 +70,7 @@ async def detect(file: UploadFile = File(...)):
     class_names, boxes = detect_objects(img)
 
     #return{'class_names': class_names, 'boxes': boxes}
-    return {'class_names': class_names}
+    return {'image_class': class_names}
 
 if __name__ == '__main__':
     app.run(debug=True)
