@@ -54,7 +54,41 @@
    `!python main.py  --coco_path "/content/furniture_classification/Dataset"  --output_dir "/content/furniture_classification/outputs" --resume "/content/furniture_classification/detr-main/detr_r50_no-class-head.pth" --num_classes=4  --epochs=20  --lr=1e-4  --batch_size=1  --num_workers=1`
       
  
-   - Model training:<br />
+   - **Model Inferencing:**<br />
+    - Model inferencing code is present in model_training.ipynb
+    
+   - **Graphs of mAP, Loss and Class error:**
+      Model was training for 20 epochs and below are graphs of training
+      
+      ![image](https://user-images.githubusercontent.com/126147358/221084155-461cb99a-3fd3-4fb5-b150-0f43a898c124.png)
+
+   - **Model testing:**
+      Model was tested on 15 images which were NOT part of training. Code is present in model_training.ipynb towards the end of the file
+      <br />
+      ![image](https://user-images.githubusercontent.com/126147358/221084805-5c82126b-a1ce-451f-991f-42d6df0bc2ab.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221084936-627cb91c-9f0c-4d2f-ab60-e86e01169491.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221084981-39157c05-2669-474d-bf8d-93a66d8dfa51.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085024-3ac28f54-dcac-4351-8b67-f71ca82f9811.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085123-02257b1a-d647-4a75-9d76-8842a87af028.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085149-315100ab-c5d9-43e8-8cd9-f8d11b9814fa.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085170-7dd56f0f-3019-4e40-bb77-8496c2cc66d0.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085199-e850ac17-52cc-43df-9521-2773853fa259.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085235-7ebae4a6-838a-4d9a-9b99-163fe3d00db3.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085263-77942efe-99b4-4202-a964-b40c262e04b5.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085282-2c3026f8-7bf1-4712-9138-3013ef29a0ea.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085317-9e8bd387-6a0d-4740-adeb-441eaae5c2ce.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085351-50a44e34-41f8-4e77-8316-4df967e1bee3.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085374-dea18bac-6a3f-4415-aa9e-b04c96eddd77.png)
+      ![image](https://user-images.githubusercontent.com/126147358/221085403-cc18733d-ffd3-4a25-b19f-381bc446632c.png)
+
+
+
+
+
+
+
+
+
    
     
     
