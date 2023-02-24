@@ -1,43 +1,44 @@
-import uvicorn
-from fastapi import FastAPI, File, UploadFile
-import numpy as np
+from io import BytesIO
+import base64
+import torch
+import torchvision.transforms as T
 from PIL import Image
+from flask import Flask, jsonify, request
 
-app = FastAPI()
+# load pre-trained DETR model
+model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
+model.eval()
 
-# Load the trained model
-path = '/content/furniture_classification/detr-main'
+# define the API endpoint
+app = Flask(__name__)
 
-model = torch.hub.load(path, 'detr_resnet50', source="local", pretrained=True, num_classes=4)
-checkpoint = torch.load("/content/furniture_classification/outputs/checkpoint.pth", map_location='cpu')
-
-model.load_state_dict(checkpoint['model'], strict=False)
-model.eval();
-
-# Define the prediction function
-def predict(image):
-    # Load the image
-    img = Image.open(image.file).convert('RGB')
-    # Resize the image to the size required by the model
-    img = img.resize((224, 224))
-    # Convert the image to a numpy array
-    img_array = np.array(img)
-    # Scale the image pixel values to [0, 1]
-    img_array = img_array.astype('float32') / 255.0
-    # Add a batch dimension to the image
-    img_array = np.expand_dims(img_array, axis=0)
-    # Make the prediction
-    prediction = model.predict(img_array)
-    # Get the predicted class
-    predicted_class = np.argmax(prediction, axis=1)[0]
-    return predicted_class
-
-# Define the API endpoint
-@app.post('/predict')
-async def predict_image(image: UploadFile = File(...)):
-    # Call the prediction function
-    predicted_class = predict(image)
-    return {'class': predicted_class}
+@app.route('/detect_objects', methods=['POST'])
+def detect_objects():
+    # get the image data from the request
+    image_data = request.get_json()['image']
+    # convert the image data from base64 to bytes
+    image_bytes = base64.b64decode(image_data)
+    # open the image using PIL
+    image = Image.open(BytesIO(image_bytes))
+    # apply the necessary transforms to the image
+    transform = T.Compose([
+        T.Resize(800),
+        T.ToTensor(),
+        T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+    image = transform(image)
+    # add batch dimension to the image
+    image = image.unsqueeze(0)
+    # run the image through the DETR model
+    outputs = model(image)
+    # get the predicted classes for each object
+    pred_classes = [int(x) for x in outputs['pred_classes'][0]]
+    # return the predicted classes as a JSON response
+    response = {
+        'status': 'success',
+        'objects': pred_classes
+    }
+    return jsonify(response)
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    app.run(debug=True)
