@@ -1,6 +1,6 @@
 # furniture_classification
 
-### Problem Statement:
+## Problem Statement:
 **Build a classficiation model based on below conditions:**
   1. The Dataset folder has images of 3 classes. 
   2. Build a classification model (Deep learning preferred).
@@ -9,9 +9,10 @@
   5. Implement CI/CD pipeline on Github Actions.
   6. Add a clear README file with instructions.
   
-### Solution:
+## Solution:
   An approach was decided to use transformer model which can be used in google colab and can give good precision. Based on my previous experience of using transformer model in production project, DETR (Detection Transformer by Facebook) was selected for model development
 
+### Model Buidling 
   **Data Preprocessing:** <br />
   <br />
       - Total 300 images are present in dataset (100 per classes) without annotations. This data was manually split as 75%:20%:5% between train, validation and test sets. <br /> 
@@ -29,6 +30,7 @@
    - DETR comes up with different resnet backbones like R50, R101. For model training, R50 was selected
    - Code to invoke DETR in colab and using the same can be found in model_training.ipynb file. Link of the same is given below:
    https://github.com/ShriMLEngineer/furniture_classification/blob/main/model_training.ipynb
+   - Anyone can run this colab notebook. It will build the model, and run the inference script to test the model
    - **Changes in the code:** <br />
       Below changes were made in the DETR code to customize the same as per our requirement
         - **main.py:**<br />
@@ -82,6 +84,12 @@
       ![image](https://user-images.githubusercontent.com/126147358/221085374-dea18bac-6a3f-4415-aa9e-b04c96eddd77.png)
       ![image](https://user-images.githubusercontent.com/126147358/221085403-cc18733d-ffd3-4a25-b19f-381bc446632c.png)
 
+### API to access model: <br />
+    -File app.py contains the code that can be used to access the model.
+    
+### Docker image of the code: <br />
+  - Dockerfile is created that has Docker image of the code
+  
 
 
 
