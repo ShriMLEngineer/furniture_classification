@@ -86,6 +86,12 @@
 
 ### API to access model: <br />
   - File app.py contains the code that can be used to access the model.
+  - app.py file was tested on local machine using httpie. Below is the output generated for 3 images. It can be seen that app successfully sent the JSON response with correct class
+  
+    ![image](https://user-images.githubusercontent.com/126147358/221151192-8c8f33d2-6c73-4e7f-8000-8b61c62bd230.png)
+
+
+  
     
 ### Docker image of the code: <br />
   - Dockerfile is created that has Docker image of the code
