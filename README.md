@@ -60,7 +60,7 @@
     - Model inferencing code is present in model_training.ipynb
     
    - **Graphs of mAP, Loss and Class error:** <br />
-      Model was training for 20 epochs and below are graphs of training
+      Model was trained for 20 epochs and below are graphs of training. It has achieved around 30% mAP
       
       ![image](https://user-images.githubusercontent.com/126147358/221084155-461cb99a-3fd3-4fb5-b150-0f43a898c124.png)
 
