@@ -85,7 +85,7 @@
       ![image](https://user-images.githubusercontent.com/126147358/221085403-cc18733d-ffd3-4a25-b19f-381bc446632c.png)
 
 ### API to access model: <br />
-    -File app.py contains the code that can be used to access the model.
+  - File app.py contains the code that can be used to access the model.
     
 ### Docker image of the code: <br />
   - Dockerfile is created that has Docker image of the code
