@@ -10,24 +10,23 @@
   6. Add a clear README file with instructions.
   
 ### Solution:
+  An approach was decided to use transformer model which can be used in google colab and can give good precision. Based on my previous experience of using transformer model in production project, DETR (Detection Transformer by Facebook) was selected for model development
 
   **Data Preprocessing:** <br />
   <br />
       - Total 300 images are present in dataset (100 per classes) without annotations. This data was manually split as 75%:20%:5% between train, validation and test sets. <br /> 
       - VGG Image Annotator (VIA) tool was used to annotate data in COCO format <br />
       - Once annotations were created, they were stored in different folders as mentioned below: <br />
-      <br />
-        **1. annotations** <br />
+  
+   - **annotations** <br />
           - *instances_train2017.json*      This is coco annotation for training data <br />
           - *instances_val2017.json*        This is coco annotation for validation data<br />
-          <br />
-        **2. train2017**                         This folder has training images<br />
-        **3. val2017**                           This folder has validation images<br />
+   - **train2017**                         This folder has training images<br />
+   - **val2017**                           This folder has validation images<br />
 
   **Budiling Classification Model:**
   
-   - An approach was decided to use transformer model which can be used in google colab and can give good precision. Based on my previous experience of using transformer model in production project, DETR (Detection Transformer by Facebook) was selected for model development
-   - Different resnet backbones like R50, R101 are available. R50 was selected for model development
+   - DETR comes up with different resnet backbones like R50, R101. For model training, R50 was selected
    - Code to invoke DETR in colab and using the same can be found in model_training.ipynb file. Link of the same is given below:
    https://github.com/ShriMLEngineer/furniture_classification/blob/main/model_training.ipynb
    - **Changes in the code:** <br />
@@ -48,9 +47,15 @@
               Code added `def detr_resnet50(num_classes: int, pretrained=False, return_postprocessor=False):`<br />
               
               
-
-   - Hyperparameters:
-    - Model was traied
+   - Model training:<br />
+    - Model was trained for 20 epochs with LR of 0.0001. Value 4 was passed to num_classes parameter as DETR expects 1 additional class as N/A.
+    - Below is model training script
+   
+   `!python main.py  --coco_path "/content/furniture_classification/Dataset"  --output_dir "/content/furniture_classification/outputs" --resume "/content/furniture_classification/detr-main/detr_r50_no-class-head.pth" --num_classes=4  --epochs=20  --lr=1e-4  --batch_size=1  --num_workers=1`
+      
+ 
+   - Model training:<br />
+   
     
     
   
