@@ -47,7 +47,7 @@
               Code added `def detr_resnet50(num_classes: int, pretrained=False, return_postprocessor=False):`<br />
               
               
-   - Model training:<br />
+   - **Model training:** <br />
     - Model was trained for 20 epochs with LR of 0.0001. Value 4 was passed to num_classes parameter as DETR expects 1 additional class as N/A.
     - Below is model training script
    
@@ -57,13 +57,14 @@
    - **Model Inferencing:**<br />
     - Model inferencing code is present in model_training.ipynb
     
-   - **Graphs of mAP, Loss and Class error:**
+   - **Graphs of mAP, Loss and Class error:** <br />
       Model was training for 20 epochs and below are graphs of training
       
       ![image](https://user-images.githubusercontent.com/126147358/221084155-461cb99a-3fd3-4fb5-b150-0f43a898c124.png)
 
-   - **Model testing:**
-      Model was tested on 15 images which were NOT part of training. Code is present in model_training.ipynb towards the end of the file
+   - **Model testing:** <br />
+      Model was tested on 15 images which were NOT part of training. Code is present in model_training.ipynb towards the end of the file. Below are output images of this testing
+      <br />
       <br />
       ![image](https://user-images.githubusercontent.com/126147358/221084805-5c82126b-a1ce-451f-991f-42d6df0bc2ab.png)
       ![image](https://user-images.githubusercontent.com/126147358/221084936-627cb91c-9f0c-4d2f-ab60-e86e01169491.png)
