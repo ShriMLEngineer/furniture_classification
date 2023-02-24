@@ -6,10 +6,10 @@ from PIL import Image
 from flask import Flask, jsonify, request
 
 # load trained DETR model
-path = 'C:\Users\HP\furniture_classification\detr-main'
+path = 'https://github.com/ShriMLEngineer/furniture_classification/tree/main/detr-main'
 
 model = torch.hub.load(path, 'detr_resnet50', source="local", pretrained=True, num_classes=4)
-checkpoint = torch.load("C:\Users\HP\furniture_classification\outputs\checkpoint.pth", map_location='cpu')
+checkpoint = torch.load("https://github.com/ShriMLEngineer/furniture_classification/tree/main/outputs/checkpoint.pth", map_location='cpu')
 
 model.load_state_dict(checkpoint['model'], strict=False)
 model.eval();
