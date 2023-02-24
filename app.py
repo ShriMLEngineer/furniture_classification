@@ -5,9 +5,14 @@ import torchvision.transforms as T
 from PIL import Image
 from flask import Flask, jsonify, request
 
-# load pre-trained DETR model
-model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=True)
-model.eval()
+# load trained DETR model
+path = 'C:\Users\HP\furniture_classification\detr-main'
+
+model = torch.hub.load(path, 'detr_resnet50', source="local", pretrained=True, num_classes=4)
+checkpoint = torch.load("C:\Users\HP\furniture_classification\outputs\checkpoint.pth", map_location='cpu')
+
+model.load_state_dict(checkpoint['model'], strict=False)
+model.eval();
 
 # define the API endpoint
 app = Flask(__name__)
